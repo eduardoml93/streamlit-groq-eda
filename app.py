@@ -38,7 +38,6 @@ with st.sidebar:
     model = st.selectbox(
         "🧠 Modelo de IA",
         [
-            "llama-3.1-70b-versatile",      # Modelo principal atual
             "llama-3.1-8b-instant",         # Mais rápido
             "llama-3.2-90b-text-preview",   # Mais poderoso (beta)
             "llama-3.2-1b-preview",         # Leve e rápido
@@ -179,7 +178,7 @@ def query_groq(client, model, prompt, data_context, temperature=0.7):
         error_msg = str(e)
         # Tratamento específico para modelo descontinuado
         if "model_decommissioned" in error_msg or "mixtral-8x7b-32768" in error_msg:
-            return "❌ **Erro: O modelo selecionado foi descontinuado.**\n\n🔧 **Solução:** Selecione outro modelo na sidebar, como:\n- `llama-3.1-70b-versatile` (recomendado)\n- `llama-3.1-8b-instant` (mais rápido)\n- `gemma2-9b-it` (alternativa)"
+            return "❌ **Erro: O modelo selecionado foi descontinuado.**\n\n🔧 **Solução:** Selecione outro modelo na sidebar, como:\n- `llama-3.1-8b-instant` (mais rápido)\n- `gemma2-9b-it` (alternativa)"
         elif "authentication" in error_msg.lower():
             return "❌ **Erro de autenticação.** Verifique se sua API Key do Groq está correta e ativa."
         elif "rate limit" in error_msg.lower():
@@ -386,7 +385,7 @@ with st.expander("❓ Precisa de ajuda?"):
     
     1. **Erro 'model_decommissioned':**
        - O modelo `mixtral-8x7b-32768` foi descontinuado
-       - Use `llama-3.1-70b-versatile` ou `llama-3.1-8b-instant`
+       - Use o `llama-3.1-8b-instant`
     
     2. **Erro de API Key:**
        - Obtenha chave gratuita em [console.groq.com](https://console.groq.com)
@@ -405,7 +404,7 @@ with st.expander("❓ Precisa de ajuda?"):
 
 st.caption("""
 🔧 **Dicas de uso:**
-1. Use `llama-3.1-70b-versatile` para melhores resultados
+1. Use `llama-3.1-8b-instant` para melhores resultados
 2. Comece com perguntas simples como "mostre estatísticas básicas"
 3. Ajuste a temperatura: mais baixa para respostas mais precisas
 4. Para datasets grandes, use o modelo `llama-3.1-8b-instant` (mais rápido)
